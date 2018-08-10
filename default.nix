@@ -9,9 +9,7 @@
 , pkgs    ?
     if builtins.compareVersions builtins.nixVersion "2.0" < 0
     then abort "hnix requires at least nix 2.0"
-    else import (builtins.fetchTarball {
-           url = "https://github.com/NixOS/nixpkgs/archive/${rev}.tar.gz";
-           inherit sha256; }) {
+    else import <nixpkgs> {
            config.allowUnfree = true;
            config.allowBroken = false;
          }
